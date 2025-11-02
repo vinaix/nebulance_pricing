@@ -1,449 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nebulance AI Agency - Service Pricing</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: 'Inter', sans-serif;
-      background: #f9fbfd;
-      color: #1a202c;
-      padding: 40px 20px;
-      line-height: 1.7;
-    }
-    
-    .document {
-      max-width: 960px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Header */
-    .header {
-      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
-      color: white;
-      padding: 60px 50px;
-      text-align: center;
-    }
-    
-    .header h1 {
-      font-size: 38px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
-    }
-    
-    .header p {
-      font-size: 18px;
-      opacity: 0.95;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    
-    /* Contact Bar */
-    .contact-bar {
-      background: #eff6ff;
-      padding: 20px 50px;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      font-size: 14px;
-      color: #475569;
-      border-bottom: 1px solid #dbeafe;
-    }
-    
-    .contact-bar a {
-      color: #1e40af;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    
-    .contact-bar a:hover {
-      text-decoration: underline;
-    }
-    
-    /* Content */
-    .content {
-      padding: 50px;
-    }
-    
-    .section-title {
-      font-size: 26px;
-      font-weight: 700;
-      color: #1e40af;
-      margin-bottom: 28px;
-      padding-bottom: 12px;
-      border-bottom: 3px solid #3b82f6;
-      display: inline-block;
-    }
-    
-    /* Pricing Cards */
-    .pricing-card {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-left: 5px solid #3b82f6;
-      border-radius: 12px;
-      padding: 32px;
-      margin-bottom: 28px;
-      transition: all 0.3s ease;
+      color: #0f0f0f;
+      line-height: 1.7;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sheet {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 30mm 25mm;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      page-break-after: always;
       position: relative;
     }
-    
-    .pricing-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.12);
+
+    h1, h2, h3 { color: #0f0f0f; font-weight: 700; }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
     }
-    
+
+    .header h1 { font-size: 34px; margin-bottom: 8px; color: #3b82f6; }
+    .header p { font-size: 16px; color: #0f0f0f; }
+
+    .contact-bar {
+      font-size: 13px;
+      color: #0f0f0f;
+      border-top: 2px solid #3b82f6;
+      border-bottom: 2px solid #3b82f6;
+      padding: 8px 0;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .contact-bar a {
+      color: #3b82f6;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: 22px;
+      color: #3b82f6;
+      margin-top: 20px;
+      margin-bottom: 14px;
+      border-bottom: 2px solid #3b82f6;
+      display: inline-block;
+      padding-bottom: 4px;
+      page-break-after: avoid;
+    }
+
+    .pricing-card {
+      border: 1px solid #3b82f6;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
     .pricing-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 22px;
-      flex-wrap: wrap;
-      gap: 16px;
+      margin-bottom: 12px;
     }
-    
-    .pricing-title {
-      font-size: 22px;
-      font-weight: 600;
-      color: #1e293b;
-    }
-    
-    .price-box {
-      text-align: right;
-    }
-    
-    .price {
-      font-size: 30px;
-      font-weight: 700;
-      color: #1e40af;
-    }
-    
-    .price-note {
-      font-size: 13px;
-      color: #64748b;
-      margin-top: 4px;
-    }
-    
+
+    .pricing-title { font-size: 18px; font-weight: 600; }
+
     .price-split {
       display: flex;
-      gap: 24px;
+      gap: 16px;
       align-items: center;
-      flex-wrap: wrap;
-      justify-content: flex-end;
     }
-    
-    .price-item {
-      text-align: center;
-    }
-    
-    .price-label {
-      font-size: 12px;
-      color: #64748b;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      font-weight: 500;
-    }
-    
-    .features {
-      list-style: none;
-      margin-top: 16px;
-    }
-    
-    .features li {
-      padding: 10px 0 10px 32px;
-      position: relative;
-      color: #475569;
-      font-size: 15px;
-    }
-    
-    .features li:before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #10b981;
-      font-weight: bold;
-      font-size: 20px;
-    }
-    
+
+    .price-item { text-align: right; }
+    .price-label { font-size: 12px; color: #3b82f6; text-transform: uppercase; font-weight: 500; }
+    .price { font-size: 22px; font-weight: 700; color: #0f0f0f; }
+    .price-note { font-size: 12px; color: #0f0f0f; margin-top: 2px; }
+
+    .features { list-style: none; margin-top: 10px; }
+    .features li { padding: 6px 0 6px 20px; position: relative; }
+    .features li:before { content: "✓"; color: #3b82f6; position: absolute; left: 0; }
+
     .highlight {
-      background: #dbeafe;
-      color: #1e40af;
-      padding: 4px 10px;
-      border-radius: 6px;
+      color: #3b82f6;
       font-weight: 600;
-      font-size: 14px;
     }
-    
-    /* Best Value Badge */
-    .best-value {
-      border-left-color: #f59e0b;
-      background: #fffbeb;
-    }
-    
-    .best-value::after {
-      content: "BEST VALUE";
-      position: absolute;
-      top: 24px;
-      right: 24px;
-      background: #f59e0b;
-      color: white;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.6px;
-    }
-    
-    /* Addon Cards */
-    .addon-card {
-      background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
-      color: white;
-      border-radius: 12px;
-      padding: 28px 32px;
-      margin-bottom: 24px;
-      border: none;
-    }
-    
-    .addon-card .pricing-title,
-    .addon-card .price,
-    .addon-card .price-note {
-      color: white;
-    }
-    
-    .addon-card .features li {
-      color: rgba(255, 255, 255, 0.95);
-    }
-    
-    .addon-card .features li:before {
-      color: #fde047;
-    }
-    
-    /* CTA */
+
     .cta-section {
-      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
-      color: white;
-      padding: 40px;
-      border-radius: 12px;
+      border: 2px solid #3b82f6;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-top: 20px;
       text-align: center;
-      margin: 50px 0 30px;
+      page-break-inside: avoid;
+      break-inside: avoid;
     }
-    
-    .cta-section h3 {
-      font-size: 24px;
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
-    
-    .cta-section p {
-      font-size: 16px;
-      opacity: 0.95;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    
-    /* Footer */
+
+    .cta-section h3 { font-size: 18px; color: #0f0f0f; margin-bottom: 8px; }
+    .cta-section p { font-size: 14px; color: #0f0f0f; }
+
     .footer {
-      background: #0f172a;
-      color: #e2e8f0;
-      padding: 35px 50px;
       text-align: center;
-      font-size: 14px;
+      font-size: 12px;
+      margin-top: 20px;
+      padding-top: 10px;
+      border-top: 1px solid #3b82f6;
+      color: #0f0f0f;
+      page-break-inside: avoid;
     }
-    
-    .footer p {
-      margin: 10px 0;
-    }
-    
-    .footer a {
-      color: #93c5fd;
-      text-decoration: none;
-    }
-    
-    .footer a:hover {
-      text-decoration: underline;
-    }
-    
-    /* Print Optimization */
+
+    /* Prevent footer from being orphaned */
+    .footer p:last-child { margin-bottom: 0; }
+
     @media print {
-      body { background: white; padding: 0; }
-      .document { box-shadow: none; border-radius: 0; border: 1px solid #ccc; }
-      .pricing-card:hover, .pricing-card { transform: none !important; box-shadow: none !important; }
-    }
-    
-    @media (max-width: 768px) {
-      .header { padding: 40px 30px; }
-      .header h1 { font-size: 30px; }
-      .content, .contact-bar { padding: 30px; }
-      .price-split { flex-direction: column; align-items: flex-end; }
+      @page { size: A4; margin: 0; }
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .sheet { page-break-after: always; }
+      .pricing-card, .cta-section, .footer { page-break-inside: avoid; }
+      .section-title { page-break-after: avoid; }
     }
   </style>
 </head>
 <body>
 
-  <div class="document">
-    <!-- Header -->
+  <!-- Page 1 -->
+  <div class="sheet">
     <div class="header">
       <h1>Nebulance AI Agency</h1>
       <p>Enterprise-Grade AI Voice & Automation Solutions</p>
     </div>
 
-    <!-- Contact Bar -->
     <div class="contact-bar">
-      <div>
-        <strong>Email:</strong> <a href="mailto:mail.nebulance@gmail.com">team@nebulance.in</a>
-      </div>
-      <div>
-        <strong>Website:</strong> <a href="https://nebulance.in" target="_blank">nebulance.in</a>
-      </div>
+      <div><strong>Email:</strong> <a href="mailto:mail.nebulance@gmail.com">team@nebulance.in</a></div>
+      <div><strong>Website:</strong> <a href="https://nebulance.in" target="_blank">nebulance.in</a></div>
     </div>
 
-    <!-- Main Content -->
-    <div class="content">
+    <h2 class="section-title">Voice Call Solutions</h2>
 
-      <!-- Voice Call Solutions -->
-      <h2 class="section-title">Voice Call Solutions</h2>
-
-      <div class="pricing-card">
-        <div class="pricing-header">
-          <div class="pricing-title">Inbound Call Solutions</div>
-          <div class="price-box">
-            <div class="price-split">
-              <div class="price-item">
-                <div class="price-label">One-Time Setup</div>
-                <div class="price">₹29,999</div>
-              </div>
-              <div style="font-size: 26px; color: #cbd5e0;">+</div>
-              <div class="price-item">
-                <div class="price-label">Monthly Recurring</div>
-                <div class="price">₹19,999</div>
-              </div>
-            </div>
-            <div class="price-note">Complete System Setup + Ongoing Support</div>
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <div class="pricing-title">Inbound Call Solutions</div>
+        <div class="price-split">
+          <div class="price-item">
+            <div class="price-label">One-Time Setup</div>
+            <div class="price">₹29,999</div>
+          </div>
+          <div class="price-item">
+            <div class="price-label">Monthly Recurring</div>
+            <div class="price">₹19,999</div>
           </div>
         </div>
-        <ul class="features">
-          <li>Complete AI voice system setup for incoming calls</li>
-          <li>AI-powered voice assistant for customer support</li>
-          <li>Handles <span class="highlight">unlimited inbound calls</span></li>
-          <li>Google Sheets-based analytics reporting</li>
-          <li>Perfect for customer support and inquiry management</li>
-        </ul>
       </div>
-
-      <div class="pricing-card">
-        <div class="pricing-header">
-          <div class="pricing-title">Outbound Call Solutions</div>
-          <div class="price-box">
-            <div class="price-split">
-              <div class="price-item">
-                <div class="price-label">One-Time Setup</div>
-                <div class="price">₹39,999</div>
-              </div>
-              <div style="font-size: 26px; color: #cbd5e0;">+</div>
-              <div class="price-item">
-                <div class="price-label">Monthly</div>
-                <div class="price" style="font-size: 22px;">Variable*</div>
-              </div>
-            </div>
-            <div class="price-note">*Flexible pricing based on call volume</div>
-          </div>
-        </div>
-        <ul class="features">
-          <li>Complete AI voice system setup for outbound campaigns</li>
-          <li>AI voice agents for proactive calling</li>
-          <li><span class="highlight">Flexible pricing based on call volume</span></li>
-          <li>Google Sheets-based analytics reporting</li>
-          <li>Ideal for sales outreach, lead generation, and follow-ups</li>
-        </ul>
-      </div>
-
-      <div class="pricing-card best-value">
-        <div class="pricing-header">
-          <div class="pricing-title">Complete Solution (Inbound + Outbound + WhatsApp)</div>
-          <div class="price-box">
-            <div class="price">₹74,999</div>
-            <div class="price-note">One-Time Complete Setup</div>
-          </div>
-        </div>
-        <ul class="features">
-          <li>Full-featured AI voice system for both directions</li>
-          <li>Complete system setup including both inbound and outbound</li>
-          <li><span class="highlight">Advanced software analytics included</span></li>
-          <li>Comprehensive call management and routing</li>
-          <li>Integrated analytics across all touchpoints</li>
-          <li>Monthly charges apply based on outbound call volume</li>
-          <li>Best value for businesses needing complete voice automation</li>
-        </ul>
-      </div>
-
-      <!-- Additional AI Services -->
-      <h2 class="section-title">Additional AI Services</h2>
-
-      <div class="addon-card">
-        <div class="pricing-header">
-          <div class="pricing-title">WhatsApp Chatbot with AI Integration</div>
-          <div>
-            <div class="price">₹4,999</div>
-            <div class="price-note">One-time Setup</div>
-          </div>
-        </div>
-        <ul class="features">
-          <li>Basic AI-powered chatbot for WhatsApp Business</li>
-          <li>Automated responses and customer engagement</li>
-          <li>24/7 availability for customer queries</li>
-        </ul>
-      </div>
-
-      <div class="addon-card" style="background: linear-gradient(135deg, #0ea5e9 0%, #22d3ee 100%);">
-        <div class="pricing-header">
-          <div class="pricing-title">AI Appointment Booking System</div>
-          <div>
-            <div class="price">₹9,999</div>
-            <div class="price-note">One-time Setup</div>
-          </div>
-        </div>
-        <ul class="features">
-          <li>Intelligent appointment scheduling system</li>
-          <li>CRM integration included</li>
-          <li>WhatsApp integration for seamless booking</li>
-          <li>Automated reminders and confirmations</li>
-        </ul>
-      </div>
-
-      <!-- CTA -->
-      <div class="cta-section">
-        <h3>Ready to Transform Your Business Communication?</h3>
-        <p>Professional setup, onboarding, and dedicated support included with every package.<br>
-           Custom enterprise solutions available for high-volume and multinational operations.</p>
-      </div>
-
+      <div class="price-note">Complete System Setup + Ongoing Support</div>
+      <ul class="features">
+        <li>Complete AI voice system setup for incoming calls</li>
+        <li>AI-powered voice assistant for customer support</li>
+        <li>Handles <span class="highlight">unlimited inbound calls</span></li>
+        <li>Google Sheets-based analytics reporting</li>
+        <li>Perfect for customer support and inquiry management</li>
+      </ul>
     </div>
 
-    <!-- Footer -->
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <div class="pricing-title">Outbound Call Solutions</div>
+        <div class="price-split">
+          <div class="price-item">
+            <div class="price-label">One-Time Setup</div>
+            <div class="price">₹39,999</div>
+          </div>
+          <div class="price-item">
+            <div class="price-label">Monthly</div>
+            <div class="price">Variable*</div>
+          </div>
+        </div>
+      </div>
+      <div class="price-note">*Flexible pricing based on call volume</div>
+      <ul class="features">
+        <li>Complete AI voice system setup for outbound campaigns</li>
+        <li>AI voice agents for proactive calling</li>
+        <li><span class="highlight">Flexible pricing based on call volume</span></li>
+        <li>Google Sheets-based analytics reporting</li>
+        <li>Ideal for sales outreach, lead generation, and follow-ups</li>
+      </ul>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <div class="pricing-title">Complete Solution (Inbound + Outbound + WhatsApp)</div>
+        <div class="price">₹74,999</div>
+      </div>
+      <div class="price-note">One-Time Complete Setup</div>
+      <ul class="features">
+        <li>Full-featured AI voice system for both directions</li>
+        <li>Complete system setup including both inbound and outbound</li>
+        <li><span class="highlight">Advanced software analytics included</span></li>
+        <li>Comprehensive call management and routing</li>
+        <li>Integrated analytics across all touchpoints</li>
+        <li>Monthly charges apply based on outbound call volume</li>
+        <li>Best value for businesses needing complete voice automation</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Page 2 -->
+  <div class="sheet">
+    <h2 class="section-title">Additional AI Services</h2>
+
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <div class="pricing-title">WhatsApp Chatbot with AI Integration</div>
+        <div class="price">₹4,999</div>
+      </div>
+      <div class="price-note">One-Time Setup</div>
+      <ul class="features">
+        <li>Basic AI-powered chatbot for WhatsApp Business</li>
+        <li>Automated responses and customer engagement</li>
+        <li>24/7 availability for customer queries</li>
+      </ul>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <div class="pricing-title">AI Appointment Booking System</div>
+        <div class="price">₹9,999</div>
+      </div>
+      <div class="price-note">One-Time Setup</div>
+      <ul class="features">
+        <li>Intelligent appointment scheduling system</li>
+        <li>CRM integration included</li>
+        <li>WhatsApp integration for seamless booking</li>
+        <li>Automated reminders and confirmations</li>
+      </ul>
+    </div>
+
+    <div class="cta-section">
+      <h3>Ready to Transform Your Business Communication?</h3>
+      <p>Professional setup, onboarding, and dedicated support included with every package.<br>Custom enterprise solutions available for high-volume and multinational operations.</p>
+    </div>
+
     <div class="footer">
       <p><strong>Nebulance AI Agency</strong></p>
       <p>AI-Powered Voice & Automation for the Modern Enterprise</p>
-      <p>
-        <a href="mailto:mail.nebulance@gmail.com">mail.nebulance@gmail.com</a> • 
-        <a href="https://nebulance.in" target="_blank">nebulance.in</a>
-      </p>
-      <p style="font-size:12px; margin-top:16px; opacity:0.8;">
-        All prices are exclusive of applicable taxes. Terms and conditions apply.
-      </p>
+      <p><a href="mailto:mail.nebulance@gmail.com">mail.nebulance@gmail.com</a> • <a href="https://nebulance.in" target="_blank">nebulance.in</a></p>
+      <p style="font-size:11px; margin-top:10px;">All prices are exclusive of applicable taxes. Terms and conditions apply.</p>
     </div>
   </div>
 
